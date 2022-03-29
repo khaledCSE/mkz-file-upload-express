@@ -2,3 +2,12 @@
 
 ### Home, sweet home!
 GET {{base}} HTTP/1.1
+
+### Create Resource
+POST {{base}}/resources HTTP/1.1
+Content-Type: application/json
+
+{
+    "tag": { "title": "Some Random Stuff", "label": "random" },
+    "additional_tags": [{ "title": "Some Random Stuff", "label": "random" }, {"title": "Really bruh?", "label": "😠"}]
+}
