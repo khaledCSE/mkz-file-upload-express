@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Simple File Upload</title>
+    </head>
+    <body>
+        <form>
+            <h1>File Uploader</h1>
+            <label for="image">Select Image: </label>
+            <input
+                type="file"
+                name="image"
+                id="image"
+                accept="image/*"
+                required
+            />
+            <button>Upload</button>
+        </form>
+
+        <script>
+            const form = document.querySelector("form");
+            const input = document.querySelector("input");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const formData = new FormData();
+                formData.append("image", input.files[0]);
+                const res = await fetch("http://localhost:5000/uploads", {
+                    method: "POST",
+                    body: formData,
+                });
+                const data = await res.json();
+                alert(JSON.stringify(data, null, 2));
+            });
+        </script>
+    </body>
+</html>
